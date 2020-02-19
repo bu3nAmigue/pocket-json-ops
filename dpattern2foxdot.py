@@ -1,0 +1,62 @@
+
+lista_instrumentos = {
+    'BD': 'x',
+    'SN': 'u',
+    'LT': 'm',
+    'RS': 'i',
+    'MT': 'c',
+    'CB': 'r',
+    'HT': 'p',
+    'CY': '#',
+    'CL': '*',
+    'OH': '=',
+    'SH': 's',
+    'CH': '-',
+    'AC': 'o'
+}
+
+import json
+with open('ritmos.json','r') as f:
+	patterns = json.load(f)
+
+# drumPattern2FoxdotSyntax([5,9,11,13,15,16],"X") -> '     X   X X X XX'
+def drumPattern2FoxdotSyntax(pattern,value):
+	total_length = 16
+	result = " "*total_length
+	for index in pattern:
+		result = result[:index-1] + value + result[index:]
+	return result
+
+
+import numbers
+def pattern(id=None):
+	if isinstance(id,str):
+		name = id
+		spec = patterns[id]
+	elif isinstance(id, numbers.Number):
+		name, spec = list(patterns.items())[id]
+	else:
+		id = random.randint(0, len(patterns))
+		name, spec = list(patterns.items())[id]
+	print("Playing "+name)
+	print(spec)
+	players = [d1,d2,d3,d4,d5,d6,d7,d8]
+	player_index = 0
+	for instrument, pattern in spec.items():
+		foxdotPattern = drumPattern2FoxdotSyntax(pattern,lista_instrumentos[instrument])
+		print(foxdotPattern)
+		players[player_index].reset() >> play(foxdotPattern)
+		player_index += 1
+	# Pauso los players que no se usen
+	for player in players[player_index:]:
+	    player.stop()
+
+# Reproduciendo el segundo patron de la lista
+pattern(2)
+
+# Reproduciendo el patron que se llama "AMEN BREAK - A"
+pattern("AMEN BREAK - A")
+
+# Reproduciendo un patron al azar
+pattern()
+
