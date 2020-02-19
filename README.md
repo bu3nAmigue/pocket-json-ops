@@ -1,6 +1,6 @@
 # pocket-json-ops
 
-Pocket JSON Ops es un diccionario de ritmos extraido del libro Pocket Operations, que compila distintos ritmos de percusión.
+Pocket JSON Ops es un diccionario de ritmos extraido del libro [Pocket Operations](https://b.shittyrecording.studio/file/shittyrec/print/Pocket+Operations+(2019-07-01).pdf), que compila distintos ritmos de percusión.
 
 ## Qué es este repo
 
