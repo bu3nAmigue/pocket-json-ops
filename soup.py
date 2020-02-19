@@ -57,8 +57,8 @@ for each in ritmos:
 
 print(dict_ritmos)
 
-with open('data.json','w') as json_file:
-    json.dump(dict_ritmos, json_file, sort_keys=True,indent=4)
+with open('ritmos.json','w') as json_file:
+    json.dump(dict_ritmos, json_file,indent=4)
 
 #     actual = ritmo.find_parent().find_next_sibling()
 #     while actual.class != 'cls_007':
