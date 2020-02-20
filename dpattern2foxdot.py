@@ -18,6 +18,11 @@ lista_instrumentos = {
 import json
 with open('ritmos.json','r') as f:
 	patterns = json.load(f)
+	
+# Opcion online
+#import requests
+#r = requests.get('https://raw.githubusercontent.com/bu3nAmigue/pocket-json-ops/master/ritmos.json')
+#patterns = r.json()
 
 # drumPattern2FoxdotSyntax([5,9,11,13,15,16],"X") -> '     X   X X X XX'
 def drumPattern2FoxdotSyntax(pattern,value):
