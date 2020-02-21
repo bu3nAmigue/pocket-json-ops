@@ -57,10 +57,18 @@ def pattern(id=None):
 	    player.stop()
 
 # Intercalar patterns
-def var_pattern(patterns,dur):
+def var_pattern(patterns,dur,velocidad=[0.5]*len(patterns),sample=[0]*len(patterns)):
     pattern(patterns[0])
+    d_all.sample=sample[0]
+    d_all.dur=velocidad[0]
+    velocidades = velocidad
+    samples = sample
     if len(patterns) > 1:
-        Clock.future(dur,lambda: var_pattern(patterns[1:],dur))
+        if len(velocidad) == 1:
+            velocidad.append(velocidades[0])
+        if len(samples) == 1:
+            samples.append(samples[0])
+        Clock.future(dur,lambda: var_pattern(patterns[1:],dur,velocidad=velocidades[1:],sample=samples[1:]))
     else:
         pass
 
@@ -75,3 +83,6 @@ pattern()
 
 # Reproducir patterns que varian cada 16 beats
 var_pattern([5,6,7,5],16)
+
+# Reproducir patterns que varian y cambiar de dur y samples
+var_pattern([5,6,7,5],16,velocidad=[0.25,0.5,0.25],sample=[0,1])
