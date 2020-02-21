@@ -56,6 +56,14 @@ def pattern(id=None):
 	for player in players[player_index:]:
 	    player.stop()
 
+# Intercalar patterns
+def var_pattern(patterns,dur):
+    pattern(patterns[0])
+    if len(patterns) > 1:
+        Clock.future(dur,lambda: var_pattern(patterns[1:],dur))
+    else:
+        pass
+
 # Reproduciendo el segundo patron de la lista
 pattern(2)
 
@@ -65,3 +73,5 @@ pattern("AMEN BREAK - A")
 # Reproduciendo un patron al azar
 pattern()
 
+# Reproducir patterns que varian cada 16 beats
+var_pattern([5,6,7,5],16)
